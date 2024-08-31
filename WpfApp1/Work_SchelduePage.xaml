@@ -1,0 +1,145 @@
+﻿<Page x:Class="WpfApp1.Work_SchelduePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" d:DesignWidth="813.323"
+      Title="WS" Height="596">
+
+    <Grid HorizontalAlignment="Center" Width="743">
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3" Width="62">Просмотр</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel Orientation="Vertical" Height="549">
+                    <DataGrid x:Name="WSDG"
+                   AutoGenerateColumns="True" Margin="0,0,0,20" Height="348">
+                    </DataGrid>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Width="741" HorizontalAlignment="Center" Height="58">
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="95" VerticalAlignment="Center">
+                                <Label Content = "Транспорт" Height="27" Width="92" HorizontalAlignment="Center"/>
+                                <ComboBox x:Name="WSSearchTransport" IsEditable="True" Width="82" Height="21" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="207" VerticalAlignment="Center">
+                                <Label Content = "Водитель" Height="27" Width="84" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="WSSearchDriver" IsEditable="True" Width="194" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="189" VerticalAlignment="Center">
+                                <Label Content = "Кондуктор" Height="27" Width="72" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="WSSearchAd_Stf" IsEditable="True" Width="186" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <Button Content ="Найти" Width="90" Height="28" Click="Find_Click" Margin="20,0,0,-10" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="157" VerticalAlignment="Center">
+                                <Label Content = "Время начала маршрута" Height="27" Width="149" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="WSSearchST" IsEditable="True" Width="151" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="147" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Label Content = "Маршрут" Height="27" Width="129" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="WSSearchRoute" IsEditable="True" Width="142" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel x:Name="SearchCompany" Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="147" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Label Content = "Компания" Height="27" Width="129" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="WSSearchCompany" IsEditable="True" Width="142" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <CheckBox Content="Показывать компанию" VerticalAlignment="Center" Margin="20,0,0,10" Checked="CheckBox_Checked" HorizontalAlignment="Right"/>
+                                <CheckBox Content="Показывать Id" Checked="CheckBox_Checked" Height="24" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <DatePicker x:Name="ReportDate" HorizontalAlignment="Center"/>
+                    <Button Content ="Отчет" Width="66" Height="28" Click="Report" Margin="0,10,0,0"/>
+
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="WSInsertItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Добавить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <DataGrid Name = "WSInsertDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="658">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Driver, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Водитель"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Transport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Транспорт"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Route_No, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Ad_Stf, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Кондуктор"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Start_Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Время начала маршрута"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button  Click="Insert_Click" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button  Click="AddRowInsert" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="WSDeleteItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Удалить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <DataGrid Name = "WSDeleteDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="658">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Driver, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Водитель"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Transport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Транспорт"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Route_No, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Ad_Stf, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Кондуктор"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Start_Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Время начала маршрута"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Click="Delete_Click" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button Click="AddRowDelete" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="WSUpdateItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Обновить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <DataGrid Name = "WSOldUpdateDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="349">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Driver, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Водитель"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Transport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Транспорт"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Route_No, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Ad_Stf, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Кондуктор"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Start_Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Время начала маршрута"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid Name = "WSNewUpdateDG" AutoGenerateColumns="False" Height="312" Width="362" Margin="30,0,0,0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Driver, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Водитель"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Transport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Транспорт"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Route_No, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Ad_Stf, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Кондуктор"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Start_Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Время начала маршрута"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                    <Button Click="Update" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button Click="AddRowUpdate" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

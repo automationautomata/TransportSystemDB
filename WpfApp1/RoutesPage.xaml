@@ -1,0 +1,106 @@
+﻿<Page x:Class="WpfApp1.RoutesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" d:DesignWidth="744.913"
+      Title="Routes" Height="495">
+
+    <Grid HorizontalAlignment="Center" Width="743">
+        <TabControl>
+            <TabItem x:Name="CompaniesTab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3" Width="62">Просмотр</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel Orientation="Vertical">
+                    <DataGrid x:Name="RoutesDG"
+                   AutoGenerateColumns="True" Margin="0,0,0,20" Height="348">
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" Width="741" HorizontalAlignment="Center" Height="58">
+                        <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="95" VerticalAlignment="Center">
+                            <Label Content = "Тип" Height="27" Width="92" HorizontalAlignment="Center"/>
+                            <ComboBox x:Name="RoutesSearchType" IsEditable="True" Width="82" Height="21" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="192" VerticalAlignment="Center">
+                            <Label Content = "Цена" Height="27" Width="193" HorizontalAlignment="Center"/>
+                            <ComboBox x:Name="RoutesSearchCost" IsEditable="True" Width="182" Height="21" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        <Button Content ="Найти" Width="90" Height="28" Click="Find_Click" Margin="20,0,0,-10" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="RoutesInsertItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Добавить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <DataGrid Name = "RoutesInsertDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="658">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Route, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Компания"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button  Click="Insert_Click" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button  Click="AddRowInsert" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="RoutesDeleteItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Удалить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <DataGrid Name = "RoutesDeleteDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="658">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Route, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Компания"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Click="Delete_Click" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button Click="AddRowDelete" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="RoutesUpdateItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Обновить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <DataGrid Name = "RoutesOldUpdateDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="338">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Route, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Компания"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid Name = "RoutesNewUpdateDG" AutoGenerateColumns="False" Height="312" Width="362" Margin="30,0,0,0">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Route, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Компания"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                    </StackPanel>
+                    <Button Click="Update" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button Click="AddRowUpdate" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

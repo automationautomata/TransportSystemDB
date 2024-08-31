@@ -1,0 +1,157 @@
+﻿<Page x:Class="WpfApp1.RepairPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" d:DesignWidth="744.913"
+      Title="Rep" Height="560">
+
+    <Grid HorizontalAlignment="Center" Width="743">
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3" Width="62">Просмотр</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel Orientation="Vertical" Height="541">
+                    <DataGrid x:Name="RepDG"
+                   AutoGenerateColumns="True" Margin="0,0,0,20" Height="348">
+                    </DataGrid>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Width="736" HorizontalAlignment="Left" Height="58">
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="95" VerticalAlignment="Center">
+                                <Label Content = "Транспорт" Height="27" Width="92" HorizontalAlignment="Center"/>
+                                <ComboBox x:Name="RepSearchTransport" IsEditable="True" Width="82" Height="21" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="207" VerticalAlignment="Center">
+                                <Label Content = "Статус" Height="27" Width="84" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="RepSearchStatus" IsEditable="True" Width="194" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="189" VerticalAlignment="Center">
+                                <Label Content = "Инженер" Height="27" Width="72" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="RepSearchEng" IsEditable="True" Width="186" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <Button Content ="Найти" Width="90" Height="28" Click="Find_Click" Margin="20,0,0,-10" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="644">
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="157" VerticalAlignment="Center">
+                                    <Label Content = "Дата начала ремонта" Height="27" Width="162" HorizontalAlignment="Left"/>
+                                    <ComboBox x:Name="RepSearchRequest_Date" IsEditable="True" Width="151" Height="21" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="147" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Label Content = "Тип" Height="27" Width="129" HorizontalAlignment="Left"/>
+                                    <ComboBox x:Name="RepSearchType" IsEditable="True" Width="142" Height="21" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="163" VerticalAlignment="Center">
+                                    <Label Height="27" Width="175" HorizontalAlignment="Left">
+                                    </Label>
+                                    <ComboBox x:Name="RepSearchED" IsEditable="True" Width="142" Height="21" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <Button Content="Отчет" Click="Report" Width="86" Height="26" Margin="44,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel x:Name="SearchCompany" Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="147" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Label Content = "Компания" Height="27" Width="129" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="RepSearchCompany" IsEditable="True" Width="142" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            
+                            <CheckBox Content="Показывать компанию" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,-10" Checked="CheckBox_Checked"/>
+                            <DatePicker x:Name="Date1" Height="24" Width="118" HorizontalAlignment="Left" Margin="150,0,0,0"/>
+                            <DatePicker x:Name="Date2" Height="24" Width="118" HorizontalAlignment="Left" Margin="0,0,-50,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="RepairInsertItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Добавить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <DataGrid x:Name = "RepInsertDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="658">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Тип"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Transport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Транспорт"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Request_Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Дата начала ремонта"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Статус"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Eng, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Инженер"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding End_Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Дата окончания ремонта"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button  Click="Insert_Click" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button  Click="AddRowInsert" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="RepairDeleteItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Удалить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <DataGrid Name = "RepDeleteDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="658">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Тип"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Transport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Транспорт"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Request_Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Дата начала ремонта"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Статус"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Eng, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Инженер"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding End_Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Дата окончания ремонта"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Click="Delete_Click" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button Click="AddRowDelete" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="RepairUpdateItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Обновить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <DataGrid Name = "RepairOldUpdateDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="349">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Тип"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Transport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Транспорт"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Request_Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Дата начала ремонта"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Статус"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Eng, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Инженер"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding End_Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Дата окончания ремонта"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid Name = "RepairNewUpdateDG" AutoGenerateColumns="False" Height="312" Width="362" Margin="30,0,0,0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Тип"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Transport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Транспорт"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Request_Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Дата начала ремонта"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Статус"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Eng, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Инженер"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding End_Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Дата окончания ремонта"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                    <Button Click="Update" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button Click="AddRowUpdate" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

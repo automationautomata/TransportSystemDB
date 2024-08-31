@@ -1,0 +1,124 @@
+﻿<Page x:Class="WpfApp1.RouteStopPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" d:DesignWidth="744.913"
+      Title="RouteStops" Height="495">
+
+    <Grid HorizontalAlignment="Center" Width="743">
+        <TabControl Margin="0,0,0,-18">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3" Width="62">Просмотр</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel Orientation="Vertical" Height="472">
+                    <DataGrid x:Name="RouteStopDG"
+                   AutoGenerateColumns="True" Margin="0,0,0,20" Height="348">
+                    </DataGrid>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Width="741" HorizontalAlignment="Center" Height="58">
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="165" VerticalAlignment="Center">
+                                <Label Content = "Id Остановки" Height="27" Width="92" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="RouteStopSearchStop" IsEditable="True" Width="160" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="135" VerticalAlignment="Center">
+                                <Label Content = "Маршрут" Height="27" Width="121" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="RouteStopSearchRoute" IsEditable="True" Width="129" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="174" VerticalAlignment="Center">
+                                <Label Content = "Время поездки до" Height="27" Width="144" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="RouteStopSearchTrvl" IsEditable="True" Width="167" Height="21" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="15,-10,0,0" Height="56" Width="192" VerticalAlignment="Center">
+                                <Label Content = "Пред. остановка" Height="27" Width="193" HorizontalAlignment="Center"/>
+                                <ComboBox x:Name="RouteStopSearchPrevSt" IsEditable="True" Width="182" Height="21" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Button Content ="Найти" Width="90" Height="28" Click="Find_Click" Margin="20,0,0,-10" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="RouteStopInsertItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Добавить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <DataGrid Name = "RouteStopInsertDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="658">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Route_No, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Stop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Остановка"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Travel_time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Время поездки до"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Prev_stop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Пред. остановка"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button  Click="Insert_Click" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button  Click="AddRowInsert" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="RouteStopDeleteItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Удалить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <DataGrid Name = "RouteStopDeleteDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="658">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Route_No, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Stop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Остановка"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Travel_time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Время поездки до"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Prev_stop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Пред. остановка"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Click="Delete_Click" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button Click="AddRowDelete" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="RouteStopUpdateItem">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Обновить</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <DataGrid Name = "RouteStopOldUpdateDG" AutoGenerateColumns="False"
+                        Margin="10,0,0,0" Height="312" Width="338">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Route_No, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Stop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Остановка"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Travel_time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Время поездки до"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Prev_stop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Пред. остановка"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid Name = "RouteStopNewUpdateDG" AutoGenerateColumns="False" Height="312" Width="362" Margin="30,0,0,0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Route_No, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Маршрут"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Stop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Остановка"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Travel_time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Время поездки до"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Prev_stop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Пред. остановка"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                    <Button Click="Update" Height="30" Width="110" Margin="0,20,0,0">Вставить в 
+                            таблицу</Button>
+                    <Button Click="AddRowUpdate" Height="30" Width="110" Margin="0,20,0,0">Добавить строку</Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>
